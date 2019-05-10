@@ -1,0 +1,157 @@
+<!--
+  Generated template for the PhotosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+
+  <header class="header_title">
+			<div class="container">
+				<div class="back_btn">
+					<a (click)="back()"><i class="fa fa-arrow-left"></i></a>
+				</div>
+				<div class="page_title text-center">
+					<h3>{{'photos' | translate}}</h3>
+				</div>
+				<!-- <div class="menu_btn text-right">
+					<a href="#"><i class="fa fa-bars" style="color:#fff;font-size:18px"></i></a>
+				</div> -->
+			</div>
+		</header>
+
+</ion-header>
+
+
+<ion-content>
+
+  <section class="bg_grey full_vh pages">
+			<div class="panel panel-theme">
+				<ul class="nav nav-tabs">
+					<li class="active">
+						<a class="p-0" data-toggle="tab" href="#">
+							<form>
+								<select [(ngModel)]="category" [ngModelOptions]="{ standalone :true}" (ngModelChange)="getPhotos(category, limit, 0)">
+									<option value="1">{{'all-albums' | translate}}</option>
+									<option value="2">{{'my-albums' | translate}}</option>
+									<option value="3">{{'all-photos' | translate}}</option>
+									<option value="4">{{'my-photos' | translate}}</option>
+								</select>
+							</form>
+						</a>
+					</li>
+					<li>
+						<a class="p-0" href="#">
+							<form class="photo-upload">
+								<div class="file-input">
+									<label *ngIf="category == 3 || category == 4" for="photo-upload">
+										<i class="ion-android-add-circle mr-5"></i>
+										{{'add-new-photo' | translate}}
+									</label>
+                  <label *ngIf="category == 1 || category == 2" (click)="createAlbum()" for="photo-upload">
+										<i class="ion-android-add-circle mr-5"></i>
+										{{'create-new-album' | translate}}
+									</label>
+									<!-- <input id="photo-upload" type="file"> -->
+								</div>
+							</form>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="container">
+        <div *ngIf="category == 3 || category == 4">
+  				<div class="panel panel-theme mb-30">
+  					<div class="photos mt-5 mb-5 row thumbnails">
+                <div class="col-xs-6" *ngFor="let photo of photos">
+  						     <a (click)="viewPhoto(photo.path)" href="#" class="thumbnail"><img src="{{photo.path}}" alt=""></a>
+                </div>
+  					</div>
+            <a (click)="getPhotos(category, limit, offset)" href="#" class="btn btn-default btn-block">{{'view-more' | translate}}</a>
+  				</div>
+			  </div>
+        <div *ngIf="category == 1 || category == 2">
+        <div class="row thumbnails">
+					<div class="col-xs-6" *ngFor="let album of albums">
+						<div class="thumbnail">
+					    	<a (click)="viewAlbum(album)" href="#"><img src="{{ album.image }}" alt=""></a>
+						    <div class="caption">
+						        <h3 (click)="viewAlbum(album)" class="pull-left"><a href="#">{{ album.title }}</a></h3>
+						        <div (click)="viewAlbum(album)" class="pull-right text-muted mt-5"><i class="fa fa-camera"></i> {{ album['photo-count'] }}</div>
+						        <div class="clearfix"></div>
+						    </div>
+					 </div>
+					</div>
+        </div>
+        <a (click)="getPhotos(category, limit, offset)" href="#" class="btn btn-default btn-block">{{'view-more' | translate}}</a>
+      </div>
+    </div>
+		</section>
+
+  <!-- <section class="bg_grey full_vh pages">
+			<div class="panel panel-theme">
+        <ul class="nav nav-tabs flex-h-center">
+					<li class="active" style="width:25%">
+						<a (click)="getPhotos('all', limit, 0)" href="#" data-toggle="tab" href="#tab-content-1">
+							Photos
+						</a>
+					</li>
+					<li style="width:25%">
+						<a (click)="getPhotos('user-all', limit, 0)" href="#" data-toggle="tab" href="#tab-content-2">
+							My Photos
+						</a>
+					</li>
+          <li style="width:25%" data-toggle="tab" href="#tab-content-3">
+						<a href="#">
+							Albums
+						</a>
+					</li>
+          <li style="width:25%" data-toggle="tab" href="#tab-content-4">
+						<a href="#">
+							My Albums
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="tab-content container">
+        <div id="tab-content-1" class="tab-pane fade in active">
+          <div class="panel panel-theme mb-30">
+  					<div class="photos mt-5 mb-5">
+  						<a href="#" *ngFor="let photo of photos"><img src="{{photo.path}}" alt=""></a>
+
+  					</div>
+            <a (click)="getPhotos('all', limit, offset)" href="#" class="btn btn-default btn-block">{{'view-more' | translate}}</a>
+  				</div>
+        </div>
+        <div id="tab-content-2" class="tab-pane fade">
+          <div class="panel panel-theme mb-30">
+  					<div class="photos mt-5 mb-5">
+  						<a href="#" *ngFor="let photo of photos"><img src="{{photo.path}}" alt=""></a>
+
+  					</div>
+            <a (click)="getPhotos('user-all', limit, offset)" href="#" class="btn btn-default btn-block">{{'view-more' | translate}}</a>
+  				</div>
+        </div>
+        <div id="tab-content-3" class="tab-pane fade">
+          <div class="row thumbnails">
+  					<div class="col-xs-6">
+  						<div class="thumbnail">
+  					    	<a href="#"><img src="images/friends.jpg" alt=""></a>
+  						    <div class="caption">
+  						        <h3 class="pull-left"><a href="#">Title Goes Here</a></h3>
+  						        <div class="pull-right text-muted mt-5"><i class="fa fa-camera"></i> 12</div>
+  						        <div class="clearfix"></div>
+  						    </div>
+  					  </div>
+  				 </div>
+				 </div>
+        </div>
+        <div id="tab-content-4" class="tab-pane fade">
+        </div>
+
+
+
+			</div>
+		</section> -->
+</ion-content>

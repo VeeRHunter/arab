@@ -1,0 +1,66 @@
+<!--
+  Generated template for the ChatPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+      <header class="header_title">
+          <div class="container">
+              <div class="back_btn">
+                <a (click)="back()"><i class="fa fa-arrow-left"></i></a>
+              </div>
+              <div class="page_title text_center">
+                <h3>Chat</h3>
+              </div>
+              <!-- <div class="menu_btn">
+                  <a href="#"><i class="fa fa-bars" style="color:#fff;font-size:18px"></i></a>
+                </div> -->
+            </div>
+        </header>
+</ion-header>
+
+
+<ion-content >
+
+		<section>
+        <div class="container">
+          <div class="chat ">
+            <div class="" *ngFor="let msg of chatMessages">
+                <div class="left_side"  *ngIf="msg.from_me == false">
+                    <div class="user_img">
+                        <img src="{{msg.avatar}}" style="border-radius:50%"  title="Arabface">
+                      </div>
+                <div class="text_box">
+                  <p>{{msg.text}}</p>
+                  <i class="ion-checkmark-round"></i><time>{{msg.time}}</time>
+                </div>
+              </div> <!-- //Left Side -->
+              <div class="right_side" *ngIf="msg.from_me== true">
+                  <div class="user_img">
+                      <img src="{{msg.avatar}}" style="border-radius:50%" alt="Arabface" title="Arabface">
+                    </div>
+                <div class="text_box">
+                  <p>{{msg.text}}</p>
+                  <i class="ion-checkmark-round"></i><time>{{msg.time}}</time>
+                </div>
+              </div> <!-- //Right Side -->
+            </div>
+         </div>
+      </div>
+          <div class="message-box" style="bottom:0px;width:100% !important">
+            <form>
+              <div class="container input-group">
+                <input type="text" class="form-control" placeholder="Type your message ..." [(ngModel)]="user.message" [ngModelOptions]="{standalone: true}">
+                <div class="input-group-btn">
+                  <button type="submit"  (click)="sendMessageFunction()" class="btn btn-default">
+                    <i class="fa fa-paper-plane"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+      </section>
+</ion-content>

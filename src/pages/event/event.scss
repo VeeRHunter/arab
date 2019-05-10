@@ -1,0 +1,145 @@
+page-event {
+  .content-ios .scroll-content {
+      margin-top: 15px !important;}
+  .feed-footer .feed-title h3 {
+    margin: -1px 0 2px !important;
+  }
+
+  .feed-footer .comment-list {
+    border-top: 0 solid #ddd !important;
+    margin-top: 7px !important;
+  }
+
+  .ml-10 {
+    margin-left: 41px !important;
+    margin-top: -28px !important;
+  }
+
+  .feed-footer .comment-action {
+    font-size: 14px !important;
+  }
+
+  .feed-footer {
+    color: #777;
+  }
+
+  .feed-editors {
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  #map {
+    height: 200px;
+  }
+
+  .feed-footer .comment-action {
+    margin-left: 40px !important;
+  }
+
+  .comment-action .pull-left {
+    margin: 6px !important;
+  }
+
+  .feed-footer .feed-title p {
+    font-size: 12px;
+    width: 80% !important;
+    margin-left: 50px !important;
+  }
+
+  .contact-popover {
+    padding: 0 !important;
+    top: 115.3789px !important;
+    left: 42px !important;
+    height: 80% !important;
+    width: 80% !important;
+    transform-origin: left top 0 !important;
+    transform: scale(1) !important;
+  }
+
+  .reply-input {
+    display: none;
+  }
+
+  .comment-edit-input .input-group {
+    display: none;
+  }
+
+  .pull-left {
+    max-width: 78% !important;
+  }
+
+  .contpopover .popover-wrapper .popover-content {
+    left: 50px !important;
+    top: 72.3789px !important;
+    width: 200px !important;
+  }
+  $popover-md-width: 80%;
+  $popover-ios-width: 320px;
+  $popover-wp-width: 320px;
+
+  .alert {
+    background: white;
+  }
+
+  .event-rsvp-statistic li {
+    display: inline-block;
+    width: 30%;
+    text-align: center;
+  }
+
+  .event-rsvp-statistic li span {
+    display: block;
+    margin: 5px;
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  .pt-70 {
+    padding-top: 0 !important;
+  }
+
+  #profile-menu {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-top: 27px;
+    margin-bottom: -15px;
+  }
+
+  #profile-menu #menu {
+    margin: 0;
+    position: relative;
+    text-align: center;
+  }
+
+  #profile-menu {
+    position: relative;
+    background: #f1f2f3;
+    padding: 0 !important;
+  }
+
+  #profile-menu .navbar {
+    padding: 0;
+  }
+  .dropdown-content {
+    display: block;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    width: 100% !important;
+    color: #5c0632 !important;
+    z-index: 100;
+  }
+
+  .show {
+    display: block;
+  }
+}

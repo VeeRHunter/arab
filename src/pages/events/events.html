@@ -1,0 +1,131 @@
+<!--
+  Generated template for the EventsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <header class="header_title">
+    <div class="container">
+      <div class="back_btn">
+        <a (click)="back()"><i class="fa fa-arrow-left"></i></a>
+      </div>
+      <div class="page_title text-center">
+        <h3>{{'events' | translate}}</h3>
+      </div>
+      <!-- <div class="menu_btn text-right">
+        <a href="#"><i class="fa fa-bars" style="color:#fff;font-size:18px"></i></a>
+      </div> -->
+    </div>
+  </header>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <section class="bg_grey full_vh pages">
+    <div class="panel panel-theme">
+      <ul class="nav nav-tabs flex-space-around" style="margin-top: 36px;">
+        <li class="active">
+          <a class="p-0" data-toggle="tab" href="#tab-content-2">
+            <form>
+              <select id="selectType" [(ngModel)]="type" [ngModelOptions]="{ standalone :true}" (ngModelChange)="getEvents(this.type ,'all', this.search, userId, 1)">
+									<option value="upcoming">{{'all-events' | translate}}</option>
+									<option value="invite">{{'invites' | translate}}</option>
+									<option value="me">{{'yours' | translate}}</option>
+									<option value="past">{{'past-events' | translate}}</option>
+                  <option value="birthdays">{{'birthdays' | translate}}</option>
+								</select>
+            </form>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="container">
+      <form class="search-form search-filter mt-10 mb-30" *ngIf="type != 'birthdays'">
+        <div class="input-group">
+          <input type="text" class="form-control" [(ngModel)]="search" [ngModelOptions]="{ standalone :true}" placeholder="{{'search-here' | translate}}">
+          <select id="selectCat" class="form-control" [(ngModel)]="category" [ngModelOptions]="{ standalone :true}" (ngModelChange)="getEvents(this.type,this.category,  '', userId, 1)">
+							<option *ngFor="let category of categories"  value="{{ category.id }}">{{ category.title | translate }}</option>
+						</select>
+          <div class="input-group-btn">
+            <button (click)="getEvents(this.type ,this.category, this.search, userId, 1)" type="submit" class="btn btn-default">
+								<i class="fa fa-search"></i>
+							</button>
+          </div>
+        </div>
+      </form>
+      <div class="tab-content" *ngIf="type != 'birthdays'">
+        <div id="tab-content-1" class="tab-pane fade in active">
+          <div id="noEvents" style="display: none;" class="box-content alert alert-danger">{{'no-event-display' | translate}}</div>
+          <div class="row thumbnails">
+
+            <div class="col-xs-6" *ngFor="let event of events">
+              <div class="thumbnail">
+                <a (click)="goToEventPage(event)" href="#"><img src="{{ event.image }}" alt=""></a>
+                <div class="caption">
+                  <h3><a (click)="goToEventPage(event)" href="#">{{ event.title }}</a></h3>
+                  <p>{{ event.description }}</p>
+                  <span class="text-muted"><i class="fa fa-clock-o"></i> {{ event.event_time }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a id="more" (click)="getEvents(this.type ,this.category, this.search, userId, page + 1)" href="#" class="btn btn-default btn-block">{{'view-more' | translate}}</a>
+        </div>
+      </div>
+      <div *ngIf="type == 'birthdays'">
+        <div *ngIf="birthdays.todays.length != 0">
+          <div class="btn btn-theme btn-block mt-30">{{'todays-birthdays' | translate}}</div>
+          <div class="panel panel-theme">
+            <div class="row">
+              <div class="col-xs-6" *ngFor="let birth of birthdays.todays">
+                <div class="thumbnail">
+                  <a (click)="GoToProfile(birth.id)" href="#"><img src="{{birth.avatar}}" alt="" style="width: 75px; height: 75px;"></a>
+                  <div class="caption">
+                    <h3 (click)="GoToProfile(birth.id)" style="text-align: center;"><a href="#" style="font-size:12px;">{{birth.name}}</a></h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="birthdays.thismonth.length != 0">
+          <div class="btn btn-theme btn-block mt-30">{{'later-in-month' | translate}}</div>
+          <div class="panel panel-theme">
+            <div class="row">
+              <div class="col-xs-6" *ngFor="let birth of birthdays.thismonth">
+                <div class="thumbnail">
+                  <a (click)="GoToProfile(birth.id)" href="#"><img src="{{birth.avatar}}" alt="" style="width: 75px; height: 75px;"></a>
+                  <div class="caption">
+                    <h3 (click)="GoToProfile(birth.id)" style="text-align: center;"><a href="#" style="font-size:12px;">{{birth.name}}</a></h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngFor="let birth of birthdays.months; let i = index;">
+          <div class="btn btn-theme btn-block mt-30">{{getMonth(birth.title) | translate}}</div>
+          <div class="panel panel-theme">
+            <div class="row">
+              <div class="col-xs-6" *ngFor="let user of birthdays.months[i].users">
+                <div class="thumbnail">
+                  <a (click)="GoToProfile(user.id)" href="#"><img src="{{user.avatar}}" alt="" style="width: 75px; height: 75px;"></a>
+                  <div class="caption">
+                    <h3 (click)="GoToProfile(user.id)" style="text-align: center;"><a href="#" style="font-size:12px;">{{user.name}}</a></h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="add-btn">
+      <a (click)="createEventPage()" href="#"><i class="fa fa-plus"></i></a>
+    </div>
+  </section>
+</ion-content>

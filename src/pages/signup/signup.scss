@@ -1,0 +1,16 @@
+.page-signup {
+  .active {
+    visibility: hidden;
+  }
+
+  .toolbar-title-md {
+    color: white !important;
+  }
+
+  .toolbar-background-md {
+    background-color: #5c0632;
+  }
+  $loading-md-background: #fafafa;
+  $loading-md-border-radius: 2px;
+  $loading-md-box-shadow: 0 16px 20px;
+}

@@ -1,0 +1,58 @@
+<!--
+  Generated template for the ViewAlbumPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <header class="header_title">
+    <div class="container">
+      <div class="back_btn">
+        <a (click)="back()"><i class="fa fa-arrow-left"></i></a>
+      </div>
+      <div class="page_title text-center">
+        <h3>{{album.title}}</h3>
+      </div>
+      <!-- <div class="menu_btn text-right">
+        <a href="#"><i class="fa fa-bars" style="color:#fff;font-size:18px"></i></a>
+      </div> -->
+    </div>
+  </header>
+
+</ion-header>
+
+
+<ion-content padding>
+  <section class="bg_grey full_vh pt-70">
+    <div class="panel panel-theme">
+      <div class="btn btn-theme btn-block">
+        <div class="pull-left">
+          <form class="photo-upload ng-untouched ng-pristine ng-valid" novalidate="">
+            <div class="file-input">
+              <label (click)="presentActionSheet()" for="photo-upload">
+                <i class="ion-android-add-circle mr-5"></i>
+                {{'add-new-photo' | translate}}
+              </label>
+            </div>
+          </form>
+        </div>
+        <div class="pull-right">
+          <a (click)="editPage()" href="#" *ngIf="album.publisher.id == userId" class="btn btn-success btn-xs"><i class="fa fa-edit fz-11"></i> {{'edit' | translate}}</a>
+          <a (click)="deleteAlbum()" href="#" *ngIf="album.publisher.id == userId" class="btn btn-danger btn-xs"><i class="fa fa-close fz-11"></i> {{'delete' | translate}}</a>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="panel panel-theme mb-30">
+        <div class="photos mt-5 mb-5 row thumbnails">
+          <div class="col-xs-6" *ngFor="let photo of photos">
+            <a (click)="viewPhoto(photo.path)" class="thumbnail" href="#"><img alt="" src="{{ photo.path }}"></a>
+          </div>
+        </div>
+        <a class="btn btn-default btn-block" href="#">{{'view-more' | translate}}</a>
+      </div>
+    </div>
+  </section>
+</ion-content>

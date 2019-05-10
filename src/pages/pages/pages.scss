@@ -1,0 +1,31 @@
+page-pages {
+  .content-ios .scroll-content {
+      margin-top: 15px !important;}
+    .pages .nav-tabs {
+    margin-top: 52px;
+    border: none !important;
+  }
+  .panel-theme {
+      padding: 10px 15px;
+      border-bottom: 1px solid transparent;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+    }
+    .thumbnails .thumbnail h3 {
+        font-weight: 600;
+        margin-top: 5px;
+    		font-size: 12px;
+    		height: 18px;
+    		overflow: hidden;
+    }
+    .thumbnails .thumbnail p {
+      font-size: 13px;
+      margin: 5px 0 15px;
+      height: 34px;
+      overflow: hidden;
+    }
+    .thumbnails img {
+        width: 100%;
+        height: 120px !important;
+    }
+}

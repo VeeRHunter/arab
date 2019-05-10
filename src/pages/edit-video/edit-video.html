@@ -1,0 +1,58 @@
+<!--
+  Generated template for the EditVideoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <header class="header_title">
+    <div class="container">
+      <div class="back_btn">
+        <a (click)="back()"><i class="fa fa-arrow-left"></i></a>
+      </div>
+      <div class="page_title text-center">
+        <h3>{{'edit-video' | translate}}</h3>
+      </div>
+      <!-- <div class="menu_btn text-right">
+					<a href="#"><i class="fa fa-bars" style="color:#fff;font-size:18px"></i></a>
+				</div> -->
+    </div>
+  </header>
+
+</ion-header>
+
+
+<ion-content padding>
+  <section class="bg_white full_vh pt-70">
+    <div class="container">
+      <form>
+        <div class="form-group mt-20">
+          <label for="title">{{'title' | translate}}:</label>
+          <input type="text" class="form-control" id="title" [(ngModel)]="video.title" [ngModelOptions]="{ standalone :true}">
+        </div>
+        <div class="form-group mt-20">
+          <label for="description">{{'description' | translate}}:</label>
+          <textarea rows="7" class="form-control" id="description" [(ngModel)]="video.description" [ngModelOptions]="{ standalone :true}"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="cat">{{'category' | translate}}:</label>
+          <select class="form-control" id="cat" [(ngModel)]="video.category_id" [ngModelOptions]="{ standalone :true}">
+    							<option *ngFor="let category of categories"  value="{{ category.id }}">{{ category.title | translate }}</option>
+				        </select>
+        </div>
+        <div class="form-group">
+          <label for="priv">{{'privacy' | translate}}:</label>
+          <select class="form-control" id="priv" [(ngModel)]="video.privacy" [ngModelOptions]="{ standalone :true}">
+    							<option value="1">{{'public' | translate}}</option>
+    							<option value="2">{{'private' | translate}}</option>
+				        </select>
+        </div>
+        <div class="form-group mt-30 mb-30">
+          <button (click)="editVideo(video.title, video.description, video.privacy, video.category_id, video.id)" type="submit" class="btn btn-theme">{{'save' | translate}}</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</ion-content>

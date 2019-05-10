@@ -1,0 +1,8 @@
+{
+  "name": "arabface_app",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "id": "c1cd053d"
+}

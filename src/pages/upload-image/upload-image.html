@@ -1,0 +1,42 @@
+<!--
+  Generated template for the UploadImagePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>upload-image</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <section class="bg_grey full_vh pt-70">
+    <div class="container">
+      <div class="feed-box post panel panel-theme mt-30">
+        <div class="feed-body">
+          <img src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">
+          <p class="mt-5"></p>
+        </div>
+      </div>
+    </div>
+    <button ion-button (click)="uploadImage()" [disabled]="lastImage === null">
+        <ion-icon name="cloud-upload"></ion-icon>{{'upload' | translate}}
+      </button>
+  </section>
+
+</ion-content>
+
+<!-- <ion-toolbar color="primary">
+  <ion-buttons>
+
+
+  </ion-buttons>
+</ion-toolbar> -->
+
+<!-- //viewPhoto -->
+<!-- <img src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">
+<h3 [hidden]="lastImage !== null">Please Select Image!</h3> -->

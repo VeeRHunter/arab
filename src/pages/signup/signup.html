@@ -1,0 +1,37 @@
+<!--
+  Generated template for the SignupPage page.
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content class="loginPage">
+  <div class="bg_color full_vh" style="margin-top: 60px;">
+    <div class="container">
+      <div class="login_form">
+        <form class="form" method="post" action="#">
+          <div class="form_input">
+            <a href="#" class="profile_img"><i class="ion-ios-person-outline"></i></a>
+          </div>
+          <div class="form_input">
+            <input type="text" name="fname" [(ngModel)]="userData.firstname" placeholder="{{'first-name' | translate}}">
+          </div>
+          <div class="form_input">
+            <input type="text" name="lname" [(ngModel)]="userData.lastname" placeholder="{{'last-name' | translate}}">
+          </div>
+          <div class="form_input">
+            <input type="text" name="mail" [(ngModel)]="userData.email_address" placeholder="{{'email-address' | translate}}">
+          </div>
+          <div class="form_input">
+            <input type="password" name="password" [(ngModel)]="userData.password" placeholder="{{'password' | translate}}">
+          </div>
+          <div class="form_input">
+            <input type="password" name="password" placeholder="{{'confirm-password' | translate}}">
+          </div>
+          <div class="form_input">
+            <input type="submit" value="{{'create-account' | translate}}" (click)="createAccount()">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ion-content>

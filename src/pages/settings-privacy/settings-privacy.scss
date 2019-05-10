@@ -1,0 +1,27 @@
+page-settings-privacy {
+  .content-ios .scroll-content {
+    margin-top: 8px !important;}
+  .modal-backdrop,
+  .modal-backdrop.in {
+    background-color: transparent !important;
+    opacity: 1 !important;
+    z-index: -1 !important;
+  }
+
+  .toggle-md.toggle-checked .toggle-icon {
+    background-color: #f3a6cd !important;
+  }
+
+  .toggle-md.toggle-checked .toggle-inner {
+    background-color: #5c0632 !important;
+  }
+
+  .modal-backdrop {
+    z-index: -1 !important;
+  }
+
+  .pt-70 {
+    padding: 16px;
+    margin-top: 10px;
+  }
+}

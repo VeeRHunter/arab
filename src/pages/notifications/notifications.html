@@ -1,0 +1,300 @@
+<!--
+  Generated template for the NotificationsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+
+</ion-header>
+
+
+<ion-content>
+  <section class="">
+    <div class="container">
+      <ion-refresher (ionRefresh)="doRefresh($event);">
+        <ion-refresher-content refreshingSpinner="circles">
+        </ion-refresher-content>
+      </ion-refresher>
+      <!-- <button ion-button ion-long-press [interval]="1000" (click)="pressed()" (onPressing)="longPress(notify.id)" (onPressEnd)="released()">Test</button> -->
+      <div id="noNoti" style="display: none; margin-top: 10px; text-align: center;" class="box-content alert alert-danger">{{'no-new-notifications' | translate}}</div>
+      <div class="users-list notifications" *ngFor="let notify of notifications; let i = index;">
+
+        <div class="user-item" loadingEnter="loading-md-pop-in" *ngIf="notify.mark_read == 0" style="background-color: #e2e2e2;" id="{{notify.id}}">
+          <div class="user-img" style="border-radius: 100px;">
+            <img src={{notify.avatar}} alt="" style="border-radius: 100px;">
+          </div>
+          <div [ngSwitch]="true">
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'feed.like.comment'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'like-your-comment' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'profile.view'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'view-your-profile' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'feed.shared'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'shared-your-post' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'feed.like.react'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'reacted-to-post' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'feed.tag'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'tag-you-in-post' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'page.new.role'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'add-you-as' | translate}} </span>
+                <span>
+                  <span *ngIf="notify.data_one == 1">{{'admin' | translate}}</span>
+                  <span *ngIf="notify.data_one == 2">{{'moderator' | translate}}</span>
+                  <span *ngIf="notify.data_one == 3">{{'editor' | translate}}</span>
+                {{'in' | translate}} <a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.page[0].title}}</a></span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'page.like'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'like-your-page' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'group.post'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'posted-in-group' | translate}} <a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.group_name}} </a></span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'group.role'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'made-you-moderator' | translate}} <a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.group_name}} </a></span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'relationship.follow'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'started-following-you' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'event.invite'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'invited-you-to-event' | translate}} <a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.data_one}} </a>{{'event' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'group.add.member'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'added-you-to-group' | translate}} <a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.group_name}} </a></span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'feed.comment.reply'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'replied-on-your-comment' | translate}} </span></h5>
+              <p>"{{notify.content}}"</p>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'page.invite'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'invited-you-to-page' | translate}} {{notify.title}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'feed.mention'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'mentioned-you-in-post' | translate}} {{notify.title}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'feed.like'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'liked-your-post' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'relationship.confirm'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'accepted-friend-request' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'relationship.add'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'sent-you-friend-request' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'feed.comment'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'make-comment-on-your-post' | translate}}</span></h5>
+              <p>"{{notify.content}}"</p>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'video.comment'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'make-comment-on-your-video' | translate}}</span></h5>
+              <p>"{{notify.content}}"</p>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'video.comment.reply'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'replied-on-your-comment' | translate}} </span></h5>
+              <p>"{{notify.content}}"</p>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'video.like'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'liked-your-video' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'post-on-timeline'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'post-on-timeline' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'event.rsvp'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a>
+                 <span>
+                   <span *ngIf="notify.data_two == 2">{{'might-be-going' | translate}}</span>
+                   <span *ngIf="notify.data_two == 1">{{'is-going-to' | translate}}</span>
+                   <span *ngIf="notify.data_two == 3">{{'not-going' | translate}}</span>
+                   <a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.data_one}} </a>
+                 </span>
+               </h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+
+            <div class="read-mark">
+              <i (click)="markReadNotification(notify.id, '0', i)" class="fa fa-check-circle" *ngIf="notify.mark_read == '1'" style="color: green;" id="check{{notify.id}}"></i>
+              <i (click)="markReadNotification(notify.id, '1', i)" class="fa fa-check-circle" *ngIf="notify.mark_read == '0'" style="color: black;" id="check{{notify.id}}"></i>
+              <i (click)="deleteNotification(notify.id, i)" class="fa fa-close" id="delete{{notify.id}}"></i>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="clearfix"></div>
+        </div>
+        <!-- //user-item -->
+
+        <div class="user-item" loadingEnter="loading-md-pop-in" *ngIf="notify.mark_read == 1" style="background-color: transparent;" id="{{notify.id}}">
+          <div class="user-img" style="border-radius: 100px;">
+            <img src={{notify.avatar}} alt="" style="border-radius: 100px;">
+          </div>
+          <div [ngSwitch]="true">
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'feed.like.comment'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'like-your-comment' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'profile.view'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'view-your-profile' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'feed.shared'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'shared-your-post' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'feed.like.react'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'reacted-to-post' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'feed.tag'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'tag-you-in-post' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'page.new.role'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'add-you-as' | translate}} </span>
+                <span>
+                  <span *ngIf="notify.data_one == 1">{{'admin' | translate}}</span>
+                  <span *ngIf="notify.data_one == 2">{{'moderator' | translate}}</span>
+                  <span *ngIf="notify.data_one == 3">{{'editor' | translate}}</span>
+                {{'in' | translate}} <a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.page[0].title}}</a></span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'page.like'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'like-your-page' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'group.post'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'posted-in-group' | translate}} <a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.group_name}} </a></span></h5>
+
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'group.role'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'made-you-moderator' | translate}} <a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.group_name}} </a></span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'event.rsvp'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a>
+                 <span>
+                   <span *ngIf="notify.data_two == 2">{{'might-be-going' | translate}}</span>
+                   <span *ngIf="notify.data_two == 1">{{'is-going-to' | translate}}</span>
+                   <span *ngIf="notify.data_two == 3">{{'not-going' | translate}}</span>
+                   <a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.data_one}} </a>
+                 </span>
+               </h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'relationship.follow'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'started-following-you' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'event.invite'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'invited-you-to-event' | translate}} <a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.data_one}} </a>{{'event' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'group.add.member'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'added-you-to-group' | translate}} <a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.group_name}} </a></span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'feed.comment.reply'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'replied-on-your-comment' | translate}} </span></h5>
+              <p>"{{notify.content}}"</p>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'page.invite'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'invited-you-to-page' | translate}} {{notify.title}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'feed.mention'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'mentioned-you-in-post' | translate}} {{notify.title}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'feed.like'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'liked-your-post' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'relationship.confirm'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'accepted-friend-request' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'relationship.add'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>sent you friend request</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'feed.comment'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'make-comment-on-your-post' | translate}}</span></h5>
+              <p>"{{notify.content}}"</p>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'video.comment'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'make-comment-on-your-video' | translate}}</span></h5>
+              <p>"{{notify.content}}"</p>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'video.comment.reply'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'replied-on-your-comment' | translate}} </span></h5>
+              <p>"{{notify.content}}"</p>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'video.like'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'liked-your-video' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div ion-long-press [interval]="500" (click)="gotoNotification(notify.type, notify, i)" (onPressing)="longPress(notify.id)" class="user-info dropbtn" *ngSwitchCase="notify.type == 'post-on-timeline'">
+              <h5><a style="color:#5c0632;cursor:pointer;font-size:14px;">{{notify.name}} </a> <span>{{'post-on-timeline' | translate}}</span></h5>
+              <p>{{getTime(notify.time)}}</p>
+            </div>
+            <div class="read-mark">
+              <i (click)="markReadNotification(notify.id, '0', i)" class="fa fa-check-circle" *ngIf="notify.mark_read == '1'" style="color: green;" id="check{{notify.id}}"></i>
+              <i (click)="markReadNotification(notify.id, '1', i)" class="fa fa-check-circle" *ngIf="notify.mark_read == '0'" style="color: black;" id="check{{notify.id}}"></i>
+              <i (click)="deleteNotification(notify.id, i)" class="fa fa-close" id="delete{{notify.id}}"></i>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="clearfix"></div>
+        </div>
+        <!-- //user-item -->
+
+        <div id="myDropdown{{notify.id}}" class="dropdown-content">
+          <a *ngIf="notify.mark_read == '1'" (click)="markReadNotification(notify.id, '0', i)">{{'make-unread' | translate}}</a>
+          <a *ngIf="notify.mark_read == '0'" (click)="markReadNotification(notify.id, '1', i)">{{'make-read' | translate}}</a>
+          <a (click)="deleteNotification(notify.id, i)" >{{'delete' | translate}}</a>
+          <a (click)="cancel()">{{'cancel' | translate}}</a>
+          <!-- <a href="#contact">Contact</a> -->
+        </div>
+
+      </div>
+      <a id="more" (click)="getNotifications(pageNum + 1)" href="#" class="btn btn-default btn-block" style="margin-top: 10px; margin-bottom: 10px;">{{'view-more' | translate}}</a>
+    </div>
+  </section>
+
+</ion-content>

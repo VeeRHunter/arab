@@ -1,0 +1,34 @@
+page-edit-post {
+  .panel{
+      margin-bottom: 0px !important
+  }
+  .feed-editors {
+       margin-top: 0px !important;
+   margin-left: 0px !important;
+  }
+  .open>.dropdown-menu{
+      width:100%
+  }
+  .feeling-div {
+      display: none;
+  }
+  .dropdown-feeling .dropdown-menu {
+      width: 100%;
+  }
+  .dropdown-feeling img {
+      width: 15px;
+      margin-right: 5px;
+      vertical-align: middle;
+  }
+  .dropdown-feeling li a {
+      line-height: 2.1 !important
+  }
+  .tagslist li {
+      width:100% !important;
+      color:#5c0632 !important;
+      padding: 3px !important
+  }
+  .scroll-content {
+       margin-top: 56px !important;
+  }
+}

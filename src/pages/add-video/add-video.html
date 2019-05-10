@@ -1,0 +1,59 @@
+<!--
+  Generated template for the AddVideoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <header class="header_title">
+    <div class="container">
+      <div class="back_btn">
+        <a (click)="back()"><i class="fa fa-arrow-left"></i></a>
+      </div>
+      <div class="page_title text-center">
+        <h3>{{'add-video' | translate}}</h3>
+      </div>
+      <!-- <div class="menu_btn text-right">
+					<a href="#"><i class="fa fa-bars" style="color:#fff;font-size:18px"></i></a>
+				</div> -->
+    </div>
+  </header>
+
+</ion-header>
+
+
+<ion-content padding>
+  <section class="bg_white full_vh pt-70">
+    <div class="container">
+      <form>
+        <div class="form-group">
+          <label for="g_priv">{{'source' | translate}}:</label>
+          <select class="form-control" id="source">
+							      <option>{{ 'external-link' | translate }}</option>
+				        </select>
+        </div>
+        <div class="form-group">
+          <label for="url">{{'url' | translate}}:</label>
+          <input type="url" class="form-control" id="url" [(ngModel)]="link" [ngModelOptions]="{ standalone :true}">
+        </div>
+        <div class="form-group">
+          <label for="cat">{{'category' | translate}}:</label>
+          <select class="form-control" id="cat" [(ngModel)]="category" [ngModelOptions]="{ standalone :true}">
+    							<option *ngFor="let category of categories"  value="{{ category.id }}">{{ category.title | translate}}</option>
+				        </select>
+        </div>
+        <div class="form-group">
+          <label for="priv">{{'privacy' | translate}}:</label>
+          <select class="form-control" id="priv" [(ngModel)]="privacy" [ngModelOptions]="{ standalone :true}">
+    							<option value="1">{{'public' | translate}}</option>
+    							<option value="2">{{'private' | translate}}</option>
+				        </select>
+        </div>
+        <div class="form-group mt-30 mb-30">
+          <button (click)="addVideo(title, description, privacy, link, category)" type="submit" class="btn btn-theme">{{'add' | translate}}</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</ion-content>

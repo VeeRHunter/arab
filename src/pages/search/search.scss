@@ -1,0 +1,27 @@
+page-search {
+  .content-ios .scroll-content {
+    margin-top: 18px !important;}
+  .col {
+    margin: auto !important;
+  }
+
+  .slide-zoom {
+    background-color: #79023d;
+    border-radius: 5px;
+    margin-left: 10px;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 4px;
+  }
+
+  .user-img {
+    border: 1px solid #5c0632;
+  }
+
+  .header_title .menu_btn,
+  .main_header_title .back_btn {
+    text-align: right !important;
+  }
+.back_btn {  position: relative;
+    left: -20px; }
+}

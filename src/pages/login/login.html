@@ -1,0 +1,30 @@
+<ion-content class="loginPage">
+  <div class="bg_color  col-md-12">
+    <div class="container ">
+      <div class="login_logo" style="margin-top:70px">
+        <img src="assets/images/logo.png" title="Arab Call" alt="Arab Call">
+      </div>
+
+      <div class="login_form">
+        <form class="form" method="post" action="#">
+          <div class="form_input">
+            <input type="text" name="mail" [(ngModel)]='userData.username' placeholder="{{'email' | translate}}">
+          </div>
+          <div class="form_input">
+            <input type="password" name="password" [(ngModel)]='userData.password' placeholder="{{'password' | translate}}">
+          </div>
+          <div class="form_input">
+            <input type="submit" value="{{'login' | translate}}" (click)="authLoginUser()">
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="pserator_or">
+      <h3>{{'or' | translate}}</h3></div>
+    <div class="container">
+      <div class="crt_account">
+        <a (click)="signup()">{{'create-account' | translate}}</a>
+      </div>
+    </div>
+  </div>
+</ion-content>
